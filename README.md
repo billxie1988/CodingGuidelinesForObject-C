@@ -20,15 +20,15 @@ UIButton *setBut;
 
  如果方法名以一个众所周知的大写缩略词开始，该规则不适用如:
 ```objective-c
-	TIFFRepresentation (NSImage)
-	fileExistsAtPath:isDirectory:
+TIFFRepresentation (NSImage)
+fileExistsAtPath:isDirectory:
 ```
  
 ###函数及常量名
 使用与其关联类相同的前缀，并大写首字母
 ```objective-c
-	NSRunAlertPanel
-	NSCellDisabled 
+NSRunAlertPanel
+NSCellDisabled 
 ```
  
 ###标点符号
@@ -56,54 +56,54 @@ class的名称应该包含一个名词，用以表明这个类是什么（或者
 ##代码组织
 ####在函数分组和protocol/delegate实现中使用#pragma mark -来分类方法，要遵循以下一般结构：
 ```objective-c
-	#pragma mark - Lifecycle
+#pragma mark - Lifecycle
 
-	- (instancetype)init {}
-	- (void)dealloc {}
-	- (void)viewDidLoad {}
-	- (void)viewWillAppear:(BOOL)animated {}
-	- (void)didReceiveMemoryWarning {}
+- (instancetype)init {}
+- (void)dealloc {}
+- (void)viewDidLoad {}
+- (void)viewWillAppear:(BOOL)animated {}
+- (void)didReceiveMemoryWarning {}
 
-	#pragma mark - Custom Accessors
+#pragma mark - Custom Accessors
 
-	- (void)setCustomProperty:(id)value {}
-	- (id)customProperty {}
+- (void)setCustomProperty:(id)value {}
+- (id)customProperty {}
 
-	#pragma mark - IBActions
+#pragma mark - IBActions
 
-	- (IBAction)submitData:(id)sender {}
+- (IBAction)submitData:(id)sender {}
 
-	#pragma mark - Public
+#pragma mark - Public
 
-	- (void)publicMethod {}
+- (void)publicMethod {}
 
-	#pragma mark - Private
+#pragma mark - Private
 
-	- (void)privateMethod {}
+- (void)privateMethod {}
 
-	#pragma mark - Protocol conformance
-	#pragma mark - UITextFieldDelegate
-	#pragma mark - UITableViewDataSource
-	#pragma mark - UITableViewDelegate
+#pragma mark - Protocol conformance
+#pragma mark - UITextFieldDelegate
+#pragma mark - UITableViewDataSource
+#pragma mark - UITableViewDelegate
 
-	#pragma mark - NSCopying
+#pragma mark - NSCopying
 
-	- (id)copyWithZone:(NSZone *)zone {}
+- (id)copyWithZone:(NSZone *)zone {}
 
-	#pragma mark - NSObject
+#pragma mark - NSObject
 
-	- (NSString *)description {}
+- (NSString *)description {}
 ```
 ##空格
 ####缩进使用4个空格，确保在Xcode偏好设置来设置。(raywenderlich.com使用2个空格)
 ####方法大括号和其他大括号(if/else/switch/while 等.)总是在同一行语句打开但在新行中关闭。
 ###应该:
 ```objective-c
-	if (user.isHappy) {
-	    //Do something
-	} else {
-	    //Do something else
-	}
+if (user.isHappy) {
+//Do something
+} else {
+//Do something else
+}
 ```
 ####在方法之间应该有且只有一行，这样有利于在视觉上更清晰和更易于组织。在方法内的空白应该分离功能，但通常都抽离出来成为一个新方法。
 ####优先使用auto-synthesis。但如果有必要，@synthesize 和 @dynamic应该在实现中每个都声明新的一行。
@@ -111,9 +111,9 @@ class的名称应该包含一个名词，用以表明这个类是什么（或者
 ###应该:
 ```objective-c
 if (user.isHappy) {
-    //Do something
+//Do something
 } else {
-    //Do something else
+//Do something else
 }
 ```
 ##注释
@@ -132,10 +132,10 @@ if (user.isHappy) {
 "and"这个词的用法应该保留。它不应该用于多个参数来说明，就像initWithWidth:height以下这个例子：
 ###应该:
 ```objective-c
-    - (void)setExampleText:(NSString *)text image:(UIImage *)image;
-    - (void)sendAction:(SEL)aSelector to:(id)anObject forAllCells:(BOOL)flag;
-    - (id)viewWithTag:(NSInteger)tag;
-    - (instancetype)initWithWidth:(CGFloat)width height:(CGFloat)height;
+- (void)setExampleText:(NSString *)text image:(UIImage *)image;
+- (void)sendAction:(SEL)aSelector to:(id)anObject forAllCells:(BOOL)flag;
+- (id)viewWithTag:(NSInteger)tag;
+- (instancetype)initWithWidth:(CGFloat)width height:(CGFloat)height;
 ```
 ##变量
 变量尽量以描述性的方式来命名。单个字符的变量命名应该尽量避免，除了在for()循环。
@@ -242,7 +242,7 @@ switch (condition) {
     // ...
     break;
 }
-```objective-c
+```
 有很多次，当相同代码被多个cases使用时，一个fall-through应该被使用。一个fall-through就是在case最后移除'break'语句，这样就能够允许执行流程跳转到下一个case值。为了代码更加清晰，一个fall-through需要注释一下。
 ```objective-c
 switch (condition) {
@@ -303,7 +303,7 @@ if (isAwesome == true) {} // Never do this.
 ```	
 如果BOOL属性的名字是一个形容词，属性就能忽略"is"前缀，但要指定get访问器的惯用名称。例如：
 ```objective-c
-	@property (assign, getter=isEditable) BOOL editable;
+@property (assign, getter=isEditable) BOOL editable;
 ```
 文字和例子从这里引用[Cocoa Naming Guidelines](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingIvarsAndTypes.html#//apple_ref/doc/uid/20001284-BAJGIIJE)
 
