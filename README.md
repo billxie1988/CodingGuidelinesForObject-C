@@ -110,12 +110,12 @@ class的名称应该包含一个名词，用以表明这个类是什么（或者
 ####应该避免以冒号对齐的方式来调用方法。因为有时方法签名可能有3个以上的冒号和冒号对齐会使代码更加易读。请不要这样做，尽管冒号对齐的方法包含代码块，因为Xcode的对齐方式令它难以辨认。
 ###应该:
 ```objective-c
-	if (user.isHappy) {
-	    //Do something
-	} else {
-	    //Do something else
-	}
-	```
+if (user.isHappy) {
+    //Do something
+} else {
+    //Do something else
+}
+```
 ##注释
 当需要注释时，注释应该用来解释这段特殊代码为什么要这样做。任何被使用的注释都必须保持最新或被删除。
 
@@ -158,15 +158,15 @@ class的名称应该包含一个名词，用以表明这个类是什么（或者
 
 ###应该:
 ```objective-c
-	@property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 
-	@property (strong, nonatomic) NSString *tutorialName;
+@property (strong, nonatomic) NSString *tutorialName;
 ```
 ###不应该:
 ```objective-c
-	@property (nonatomic, weak) IBOutlet UIView *containerView;
+@property (nonatomic, weak) IBOutlet UIView *containerView;
 
-	@property (nonatomic) NSString *tutorialName;
+@property (nonatomic) NSString *tutorialName;
 
 NSString应该使用copy 而不是 strong的属性特性。
 
@@ -174,11 +174,11 @@ NSString应该使用copy 而不是 strong的属性特性。
 ```
 ###应该:
 ```objective-c
-	@property (copy, nonatomic) NSString *tutorialName;
+@property (copy, nonatomic) NSString *tutorialName;
 ```
 ###不应该:
 ```objective-c
-	@property (strong, nonatomic) NSString *tutorialName;
+@property (strong, nonatomic) NSString *tutorialName;
 ```
 
 ##常量
@@ -186,104 +186,104 @@ NSString应该使用copy 而不是 strong的属性特性。
 
 ###应该:
 ```objective-c
-	static NSString * const RWTAboutViewControllerCompanyName = @"RayWenderlich.com";
+static NSString * const RWTAboutViewControllerCompanyName = @"RayWenderlich.com";
 
-	static CGFloat const RWTImageThumbnailHeight = 50.0;
+static CGFloat const RWTImageThumbnailHeight = 50.0;
 ```
 ###不应该:
 ```objective-c
-    #define CompanyName @"RayWenderlich.com"
+#define CompanyName @"RayWenderlich.com"
 
-    #define thumbnailHeight 2
+#define thumbnailHeight 2
  ```
 ##枚举类型
 当使用enum时，推荐使用新的固定基本类型规格，因为它有更强的类型检查和代码补全。现在SDK有一个宏NS_ENUM()来帮助和鼓励你使用固定的基本类型。例如:
 ```objective-c
-    typedef NS_ENUM(NSInteger, RWTLeftMenuTopItemType) {
-      RWTLeftMenuTopItemMain,
-      RWTLeftMenuTopItemShows,
-      RWTLeftMenuTopItemSchedule
-    };
+typedef NS_ENUM(NSInteger, RWTLeftMenuTopItemType) {
+ RWTLeftMenuTopItemMain,
+ RWTLeftMenuTopItemShows,
+ RWTLeftMenuTopItemSchedule
+};
 ```   
 你也可以显式地赋值(展示旧的k-style常量定义)：
 ```objective-c
-    typedef NS_ENUM(NSInteger, RWTGlobalConstants) {
-      RWTPinSizeMin = 1,
-      RWTPinSizeMax = 5,
-      RWTPinCountMin = 100,
-      RWTPinCountMax = 500,
-    };
+typedef NS_ENUM(NSInteger, RWTGlobalConstants) {
+ RWTPinSizeMin = 1,
+ RWTPinSizeMax = 5,
+ RWTPinCountMin = 100,
+ RWTPinCountMax = 500,
+};
 ```    
 旧的k-style常量定义应该避免除非编写Core Foundation C的代码。
 
 ###不应该:
 ```objective-c
-	enum GlobalConstants {
-	  kMaxPinSize = 5,
-	  kMaxPinCount = 500,
-	};
+enum GlobalConstants {
+  kMaxPinSize = 5,
+  kMaxPinCount = 500,
+};
 ```	
 ##Case语句
 大括号在case语句中并不是必须的，除非编译器强制要求。当一个case语句包含多行代码时，大括号应该加上。
 ```objective-c
-	switch (condition) {
-	  case 1:
-	    // ...
-	    break;
-	  case 2: {
-	    // ...
-	    // Multi-line example using braces
-	    break;
-	  }
-	  case 3:
-	    // ...
-	    break;
-	  default: 
-	    // ...
-	    break;
-	}
+switch (condition) {
+  case 1:
+    // ...
+    break;
+  case 2: {
+    // ...
+    // Multi-line example using braces
+    break;
+  }
+  case 3:
+    // ...
+    break;
+  default: 
+    // ...
+    break;
+}
 ```objective-c
 有很多次，当相同代码被多个cases使用时，一个fall-through应该被使用。一个fall-through就是在case最后移除'break'语句，这样就能够允许执行流程跳转到下一个case值。为了代码更加清晰，一个fall-through需要注释一下。
 ```objective-c
-	switch (condition) {
-	  case 1:
-	    // ** fall-through! **
-	  case 2:
-	    // code executed for values 1 and 2
-	    break;
-	  default: 
-	    // ...
-	    break;
-	}
+switch (condition) {
+  case 1:
+    // ** fall-through! **
+  case 2:
+    // code executed for values 1 and 2
+    break;
+  default: 
+    // ...
+    break;
+}
 ```
 当在switch使用枚举类型时，'default'是不需要的。例如：
 ```objective-c
-	RWTLeftMenuTopItemType menuType = RWTLeftMenuTopItemMain;
+RWTLeftMenuTopItemType menuType = RWTLeftMenuTopItemMain;
 
-	switch (menuType) {
-	  case RWTLeftMenuTopItemMain:
-	    // ...
-	    break;
-	  case RWTLeftMenuTopItemShows:
-	    // ...
-	    break;
-	  case RWTLeftMenuTopItemSchedule:
-	    // ...
-	    break;
-	}
+switch (menuType) {
+  case RWTLeftMenuTopItemMain:
+    // ...
+    break;
+  case RWTLeftMenuTopItemShows:
+    // ...
+    break;
+  case RWTLeftMenuTopItemSchedule:
+    // ...
+    break;
+}
 ```
 ##私有属性
 私有属性应该在类的实现文件中的类扩展(匿名分类)中声明，命名分类(比如RWTPrivate或private)应该从不使用除非是扩展其他类。匿名分类应该通过使用<headerfile>+Private.h文件的命名规则暴露给测试。
 
 ###例如:
 ```objective-c
-	@interface RWTDetailViewController ()
+@interface RWTDetailViewController ()
 
-	@property (strong, nonatomic) GADBannerView *googleAdView;
-	@property (strong, nonatomic) ADBannerView *iAdView;
-	@property (strong, nonatomic) UIWebView *adXWebView;
+@property (strong, nonatomic) GADBannerView *googleAdView;
+@property (strong, nonatomic) ADBannerView *iAdView;
+@property (strong, nonatomic) UIWebView *adXWebView;
 
-	@end
+@end
 ```	
 ##布尔值
 Objective-C使用YES和NO。因为true和false应该只在CoreFoundation，C或C++代码使用。既然nil解析成NO，所以没有必要在条件语句比较。不要拿某样东西直接与YES比较，因为YES被定义为1和一个BOOL能被设置为8位。
@@ -291,15 +291,15 @@ Objective-C使用YES和NO。因为true和false应该只在CoreFoundation，C或C
 
 ###应该:
 ```objective-c
-	if (someObject) {}
-	if (![anotherObject boolValue]) {}
+if (someObject) {}
+if (![anotherObject boolValue]) {}
 ```	
 ###不应该:
 ```objective-c
-	if (someObject == nil) {}
-	if ([anotherObject boolValue] == NO) {}
-	if (isAwesome == YES) {} // Never do this.
-	if (isAwesome == true) {} // Never do this.
+if (someObject == nil) {}
+if ([anotherObject boolValue] == NO) {}
+if (isAwesome == YES) {} // Never do this.
+if (isAwesome == true) {} // Never do this.
 ```	
 如果BOOL属性的名字是一个形容词，属性就能忽略"is"前缀，但要指定get访问器的惯用名称。例如：
 ```objective-c
@@ -312,18 +312,18 @@ Objective-C使用YES和NO。因为true和false应该只在CoreFoundation，C或C
 
 ###应该:
 ```objective-c
-	if (!error) {
-	  return success;
-	}
+if (!error) {
+  return success;
+}
 ```	
 ###不应该:
 ```objective-c
-	if (!error)
-	  return success;
+if (!error)
+  return success;
 ```	  
 ###或
 ```objective-c
-	if (!error) return success;
+if (!error) return success;
 ```
 ##三元操作符
 当需要提高代码的清晰性和简洁性时，三元操作符?:才会使用。单个条件求值常常需要它。多个条件求值时，如果使用if语句或重构成实例变量时，代码会更加易读。一般来说，最好使用三元操作符是在根据条件来赋值的情况下。
@@ -332,26 +332,26 @@ Non-boolean的变量与某东西比较，加上括号()会提高可读性。如�
 
 ###应该:
 ```objective-c
-	NSInteger value = 5;
-	result = (value != 0) ? x : y;
+NSInteger value = 5;
+result = (value != 0) ? x : y;
 
-	BOOL isHorizontal = YES;
-	result = isHorizontal ? x : y;
+BOOL isHorizontal = YES;
+result = isHorizontal ? x : y;
 ```	
 ###不应该:
 ```objective-c
-	result = a > b ? x = c > d ? c : d : y;
+result = a > b ? x = c > d ? c : d : y;
 ```
 ##Init方法
 Init方法应该遵循Apple生成代码模板的命名规则。返回类型应该使用instancetype而不是id
 ```objective-c
-	- (instancetype)init {
-	  self = [super init];
-	  if (self) {
-	    // ...
-	  }
-	  return self;
-	}
+- (instancetype)init {
+  self = [super init];
+  if (self) {
+    // ...
+  }
+  return self;
+}
 ```
 查看关于instancetype的文章Class Constructor Methods
 
@@ -359,9 +359,9 @@ Init方法应该遵循Apple生成代码模板的命名规则。返回类型应�
 ##类构造方法
 当类构造方法被使用时，它应该返回类型是instancetype而不是id。这样确保编译器正确地推断结果类型。
 ```objective-c
-	@interface Airplane
-	+ (instancetype)airplaneWithType:(RWTAirplaneType)type;
-	@end
+@interface Airplane
++ (instancetype)airplaneWithType:(RWTAirplaneType)type;
+@end
 ```
 关于更多instancetype信息，请查看[NSHipster.com](http://nshipster.com/instancetype/)
 
