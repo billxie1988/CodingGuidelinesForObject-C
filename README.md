@@ -4,11 +4,11 @@ Apple命名规则尽可能坚持，特别是与这些相关的memory management 
 
 长的，描述性的方法和变量命名是好的。
 
-###应该:
+####应该:
 ```objective-c
 UIButton *settingsButton;
 ```
-###不应该:
+####不应该:
 ```objective-c
 UIButton *setBut;
 ```
@@ -54,7 +54,7 @@ class的名称应该包含一个名词，用以表明这个类是什么（或者
 这种protocol使用ing形式以和class区分开来
 
 ##代码组织
-####在函数分组和protocol/delegate实现中使用#pragma mark -来分类方法，要遵循以下一般结构：
+在函数分组和protocol/delegate实现中使用#pragma mark -来分类方法，要遵循以下一般结构：
 ```objective-c
 #pragma mark - Lifecycle
 
@@ -95,9 +95,9 @@ class的名称应该包含一个名词，用以表明这个类是什么（或者
 - (NSString *)description {}
 ```
 ##空格
-####缩进使用4个空格，确保在Xcode偏好设置来设置。(raywenderlich.com使用2个空格)
-####方法大括号和其他大括号(if/else/switch/while 等.)总是在同一行语句打开但在新行中关闭。
-###应该:
+缩进使用4个空格，确保在Xcode偏好设置来设置。(raywenderlich.com使用2个空格)
+方法大括号和其他大括号(if/else/switch/while 等.)总是在同一行语句打开但在新行中关闭。
+####应该:
 ```objective-c
 if (user.isHappy) {
 //Do something
@@ -105,10 +105,10 @@ if (user.isHappy) {
 //Do something else
 }
 ```
-####在方法之间应该有且只有一行，这样有利于在视觉上更清晰和更易于组织。在方法内的空白应该分离功能，但通常都抽离出来成为一个新方法。
-####优先使用auto-synthesis。但如果有必要，@synthesize 和 @dynamic应该在实现中每个都声明新的一行。
-####应该避免以冒号对齐的方式来调用方法。因为有时方法签名可能有3个以上的冒号和冒号对齐会使代码更加易读。请不要这样做，尽管冒号对齐的方法包含代码块，因为Xcode的对齐方式令它难以辨认。
-###应该:
+在方法之间应该有且只有一行，这样有利于在视觉上更清晰和更易于组织。在方法内的空白应该分离功能，但通常都抽离出来成为一个新方法。
+优先使用auto-synthesis。但如果有必要，@synthesize 和 @dynamic应该在实现中每个都声明新的一行。
+应该避免以冒号对齐的方式来调用方法。因为有时方法签名可能有3个以上的冒号和冒号对齐会使代码更加易读。请不要这样做，尽管冒号对齐的方法包含代码块，因为Xcode的对齐方式令它难以辨认。
+####应该:
 ```objective-c
 if (user.isHappy) {
 //Do something
@@ -130,7 +130,7 @@ if (user.isHappy) {
 在方法签名中，应该在方法类型(-/+ 符号)之后有一个空格。在方法各个段之间应该也有一个空格(符合Apple的风格)。在参数之前应该包含一个具有描述性的关键字来描述参数。
 
 "and"这个词的用法应该保留。它不应该用于多个参数来说明，就像initWithWidth:height以下这个例子：
-###应该:
+####应该:
 ```objective-c
 - (void)setExampleText:(NSString *)text image:(UIImage *)image;
 - (void)sendAction:(SEL)aSelector to:(id)anObject forAllCells:(BOOL)flag;
@@ -145,7 +145,7 @@ if (user.isHappy) {
 [私有变量](http://www.jianshu.com/p/8b76814b3663#private-properties) 应该尽可能代替实例变量的使用。尽管使用实例变量是一种有效的方式，但更偏向于使用属性来保持代码一致性。
 
 通过使用'back'属性(_variable，变量名前面有下划线)直接访问实例变量应该尽量避免，除了在初始化方法(init, initWithCoder:, 等…)，dealloc 方法和自定义的setters和getters。想了解关于如何在初始化方法和dealloc直接使用Accessor方法的更多信息，查看[这里](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmPractical.html#//apple_ref/doc/uid/TP40004447-SW6)
-###应该:
+####应该:
 ```objective-c
 @interface RWTTutorial : NSObject
 
@@ -156,27 +156,26 @@ if (user.isHappy) {
 ##属性特性
 所有属性特性应该显式地列出来，有助于新手阅读代码。属性特性的顺序应该是storage、atomicity，与在Interface Builder连接UI元素时自动生成代码一致。
 
-###应该:
+####应该:
 ```objective-c
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 
 @property (strong, nonatomic) NSString *tutorialName;
 ```
-###不应该:
+####不应该:
 ```objective-c
 @property (nonatomic, weak) IBOutlet UIView *containerView;
 
 @property (nonatomic) NSString *tutorialName;
 
 NSString应该使用copy 而不是 strong的属性特性。
-
-为什么？即使你声明一个NSString的属性，有人可能传入一个NSMutableString的实例，然后在你没有注意的情况下修改它。
 ```
-###应该:
+为什么？即使你声明一个NSString的属性，有人可能传入一个NSMutableString的实例，然后在你没有注意的情况下修改它。
+####应该:
 ```objective-c
 @property (copy, nonatomic) NSString *tutorialName;
 ```
-###不应该:
+####不应该:
 ```objective-c
 @property (strong, nonatomic) NSString *tutorialName;
 ```
@@ -184,13 +183,13 @@ NSString应该使用copy 而不是 strong的属性特性。
 ##常量
 常量是容易重复被使用和无需通过查找和代替就能快速修改值。常量应该使用static来声明而不是使用#define，除非显式地使用宏。
 
-###应该:
+####应该:
 ```objective-c
 static NSString * const RWTAboutViewControllerCompanyName = @"RayWenderlich.com";
 
 static CGFloat const RWTImageThumbnailHeight = 50.0;
 ```
-###不应该:
+####不应该:
 ```objective-c
 #define CompanyName @"RayWenderlich.com"
 
@@ -216,7 +215,7 @@ typedef NS_ENUM(NSInteger, RWTGlobalConstants) {
 ```    
 旧的k-style常量定义应该避免除非编写Core Foundation C的代码。
 
-###不应该:
+####不应该:
 ```objective-c
 enum GlobalConstants {
   kMaxPinSize = 5,
@@ -289,12 +288,12 @@ switch (menuType) {
 Objective-C使用YES和NO。因为true和false应该只在CoreFoundation，C或C++代码使用。既然nil解析成NO，所以没有必要在条件语句比较。不要拿某样东西直接与YES比较，因为YES被定义为1和一个BOOL能被设置为8位。
 这是为了在不同文件保持一致性和在视觉上更加简洁而考虑。
 
-###应该:
+####应该:
 ```objective-c
 if (someObject) {}
 if (![anotherObject boolValue]) {}
 ```	
-###不应该:
+####不应该:
 ```objective-c
 if (someObject == nil) {}
 if ([anotherObject boolValue] == NO) {}
@@ -310,13 +309,13 @@ if (isAwesome == true) {} // Never do this.
 ##条件语句
 条件语句主体为了防止出错应该使用大括号包围，即使条件语句主体能够不用大括号编写(如，只用一行代码)。这些错误包括添加第二行代码和期望它成为if语句；还有，even more dangerous defect可能发生在if语句里面一行代码被注释了，然后下一行代码不知不觉地成为if语句的一部分。除此之外，这种风格与其他条件语句的风格保持一致，所以更加容易阅读。
 
-###应该:
+####应该:
 ```objective-c
 if (!error) {
   return success;
 }
 ```	
-###不应该:
+####不应该:
 ```objective-c
 if (!error)
   return success;
@@ -330,7 +329,7 @@ if (!error) return success;
 
 Non-boolean的变量与某东西比较，加上括号()会提高可读性。如果被比较的变量是boolean类型，那么就不需要括号。
 
-###应该:
+####应该:
 ```objective-c
 NSInteger value = 5;
 result = (value != 0) ? x : y;
@@ -338,7 +337,7 @@ result = (value != 0) ? x : y;
 BOOL isHorizontal = YES;
 result = isHorizontal ? x : y;
 ```	
-###不应该:
+####不应该:
 ```objective-c
 result = a > b ? x = c > d ? c : d : y;
 ```
@@ -370,7 +369,7 @@ Init方法应该遵循Apple生成代码模板的命名规则。返回类型应�
 当访问CGRect里的x, y, width, 或 height时，应该使用CGGeometry函数而不是直接通过结构体来访问。引用Apple的CGGeometry:
 
 在这个参考文档中所有的函数，接受CGRect结构体作为输入，在计算它们结果时隐式地标准化这些rectangles。因此，你的应用程序应该避免直接访问和修改保存在CGRect数据结构中的数据。相反，使用这些函数来操纵rectangles和获取它们的特性。
-###应该:
+####应该:
 ```objective-c
 CGRect frame = self.view.frame;
 
@@ -380,7 +379,7 @@ CGFloat width = CGRectGetWidth(frame);
 CGFloat height = CGRectGetHeight(frame);
 CGRect frame = CGRectMake(0.0, 0.0, width, height);
 ```
-###不应该:
+####不应该:
 ```objective-c
 CGRect frame = self.view.frame;
 
