@@ -22,14 +22,14 @@ UIButton *setBut;
 ```objective-c
 	TIFFRepresentation (NSImage)
 	fileExistsAtPath:isDirectory:
-```objective-c
+```
  
 ###函数及常量名
 使用与其关联类相同的前缀，并大写首字母
 ```objective-c
 	NSRunAlertPanel
 	NSCellDisabled 
-```objective-c
+```
  
 ###标点符号
 由多个单词组成的名称，别使用标点符号作为名称的一部分
