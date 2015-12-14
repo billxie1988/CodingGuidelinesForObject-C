@@ -409,9 +409,8 @@ CGRect frame = (CGRect){ .origin = CGPointZero, .size = frame.size };
 这会防止[possible and sometimes prolific crashes.](http://cocoasamurai.blogspot.com/2011/04/singletons-your-doing-them-wrong.html)
 
 -------
+参考自[The official raywenderlich.com Objective-C style guide](https://github.com/raywenderlich/objective-c-style-guide#language)
 
 Author: BillXie
-
-Date:2015-12-14
 
 
