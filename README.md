@@ -153,6 +153,18 @@ if (user.isHappy) {
 
 @end
 ```
+#### 应该:
+```objective-c
+@interface WeConversationViewController () {
+   UIButton *_topTipBtn;
+}
+```
+#### 不应该:
+```objective-c
+@interface WeConversationViewController () {
+   UIButton *topTipBtn;
+}
+```
 ##属性特性
 所有属性特性应该显式地列出来，有助于新手阅读代码。属性特性的顺序应该是storage、atomicity，与在Interface Builder连接UI元素时自动生成代码一致。
 
